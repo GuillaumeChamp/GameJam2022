@@ -1,11 +1,12 @@
 import Audio.BackgroundMusic;
 import GUI.GameScene;
 import javafx.application.Application;
+import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
-import javafx.stage.*;
-import javafx.scene.*;
 import javafx.animation.AnimationTimer;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
 
 public class Render extends Application {
 
