@@ -2,6 +2,7 @@ import Audio.BackgroundMusic;
 import GUI.GameScene;
 import javafx.application.Application;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.image.Image;
 import javafx.stage.*;
 import javafx.scene.*;
 import javafx.animation.AnimationTimer;
@@ -20,6 +21,7 @@ public class Render extends Application {
     public void start(Stage theStage) {
         theStage.setTitle("GameJam2022");
         theStage.setMaximized(true);
+        theStage.getIcons().add(new Image("Resources/Sprites/shark.jpg"));
 
         root.getChildren().add(canvas);
 
