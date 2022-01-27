@@ -16,7 +16,7 @@ public class AnimatedImage
             frames[0].setPreserveRatio(true);
         }catch (Exception e){
             e.printStackTrace();
-            frames[0]= new ImageView("./Resources/shark.jpg");
+            frames[0]= new ImageView("Resources/Sprites/shark.jpg");
         }
         duration = 1;
     }

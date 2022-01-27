@@ -39,7 +39,7 @@ public class GameScene extends Scene {
      * @param time current time, used to animated image
      */
     public void paint(double time){
-        AnimatedImage skin = new AnimatedImage("Resources/shark.jpg");
+        AnimatedImage skin = new AnimatedImage("Resources/Sprites/shark.jpg");
         //all elements position and size must be linked to the height and the width
         gc.drawImage(skin.getFrame(time),width/2,height/2,width/10,height/10);
     }

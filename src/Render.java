@@ -1,3 +1,4 @@
+import Audio.BackgroundMusic;
 import GUI.GameScene;
 import javafx.application.Application;
 import javafx.scene.canvas.Canvas;
@@ -14,6 +15,7 @@ public class Render extends Application {
     final double defaultHeight = Screen.getPrimary().getBounds().getHeight();
 
     Canvas canvas = new Canvas(defaultWidth, defaultHeight);
+    BackgroundMusic sound = new BackgroundMusic("default");
 
     public void start(Stage theStage) {
         theStage.setTitle("GameJam2022");
