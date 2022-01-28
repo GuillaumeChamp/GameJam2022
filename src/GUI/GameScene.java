@@ -1,5 +1,6 @@
 package GUI;
 
+import GameEngine.Loader.ItemsLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -19,6 +20,8 @@ public class GameScene extends Scene {
         GameScene.height = height;
         this.addResizeable();
         this.addController();
+        ItemsLoader il = new ItemsLoader();
+        il.fillItems(".//src/Resources/Data/Items.csv");
     }
 
     /**
