@@ -24,16 +24,14 @@ public class Render extends Application {
         theStage.setTitle("GameJam2022");
         theStage.setMaximized(true);
         theStage.getIcons().add(new Image("Resources/Sprites/shark.jpg"));
-
         root.getChildren().add(canvas);
-
         GameScene scene = new GameScene(root, canvas, defaultWidth, defaultHeight);
         theStage.setScene(scene);
 
         new AnimationTimer() {
             public void handle(long currentNanoTime) {
                 double t = (currentNanoTime - startNanoTime) / 1000000000.0;
-                scene.paint(t);
+                scene.tick(t);
             }
         }.start();
         theStage.show();

@@ -45,7 +45,7 @@ public class GameScene extends Scene {
      * Function which paint all element
      * @param time current time, used to animated image
      */
-    public void paint(double time){
+    public void tick(double time){
         AnimatedImage skin = new AnimatedImage("Resources/Sprites/shark.jpg");
         //Controller.action(player);
         //all elements position and size must be linked to the height and the width
