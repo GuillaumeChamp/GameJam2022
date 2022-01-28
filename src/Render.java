@@ -12,9 +12,10 @@ public class Render extends Application {
 
     final long startNanoTime = System.nanoTime();
     Group root = new Group();
-
-    final double defaultWidth = Screen.getPrimary().getBounds().getWidth();
-    final double defaultHeight = Screen.getPrimary().getBounds().getHeight();
+    int borderXSize = 0;
+    int borderYSize = 70;
+    final double defaultWidth = Screen.getPrimary().getBounds().getWidth()-borderXSize;
+    final double defaultHeight = Screen.getPrimary().getBounds().getHeight()-borderYSize;
 
     Canvas canvas = new Canvas(defaultWidth, defaultHeight);
     BackgroundMusic sound = new BackgroundMusic("default");
@@ -37,5 +38,4 @@ public class Render extends Application {
         }.start();
         theStage.show();
     }
-
 }

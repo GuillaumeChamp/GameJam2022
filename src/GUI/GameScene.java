@@ -6,17 +6,17 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
 public class GameScene extends Scene {
-    GraphicsContext gc;
-    double width;
-    double height;
-    Canvas canvas;
+    private GraphicsContext gc;
+    private static double width;
+    private static double height;
+    private Canvas canvas;
 
     public GameScene(Parent parent, Canvas canvas,double width,double height) {
         super(parent, width, height);
         this.gc = canvas.getGraphicsContext2D();
         this.canvas=canvas;
-        this.width = width;
-        this.height = height;
+        GameScene.width = width;
+        GameScene.height = height;
         this.addResizeable();
     }
 
