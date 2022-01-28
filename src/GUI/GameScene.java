@@ -6,10 +6,10 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
 public class GameScene extends Scene {
-    private GraphicsContext gc;
+    private final GraphicsContext gc;
     private static double width;
     private static double height;
-    private Canvas canvas;
+    private final Canvas canvas;
 
     public GameScene(Parent parent, Canvas canvas,double width,double height) {
         super(parent, width, height);
@@ -18,6 +18,7 @@ public class GameScene extends Scene {
         GameScene.width = width;
         GameScene.height = height;
         this.addResizeable();
+        this.addController();
     }
 
     /**
@@ -33,13 +34,20 @@ public class GameScene extends Scene {
             gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         });
     }
-
+    /**
+     * Adding controller
+     */
+    private void addController(){
+        this.setOnKeyPressed(e->Controller.input(e.getCode()));
+        this.setOnKeyReleased(e->Controller.output(e.getCode()));
+    }
     /**
      * Function which paint all element
      * @param time current time, used to animated image
      */
     public void paint(double time){
         AnimatedImage skin = new AnimatedImage("Resources/Sprites/shark.jpg");
+        //Controller.action(player);
         //all elements position and size must be linked to the height and the width
         gc.drawImage(skin.getFrame(time),width/2,height/2,width/10,height/10);
     }
