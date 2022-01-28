@@ -42,13 +42,18 @@ public class GameScene extends Scene {
         this.setOnKeyReleased(e->Controller.output(e.getCode()));
     }
     /**
-     * Function which paint all element
+     * Function which update the screen and entity
      * @param time current time, used to animated image
      */
     public void tick(double time){
-        AnimatedImage skin = new AnimatedImage("Resources/Sprites/shark.jpg");
+        paint(time);
         //Controller.action(player);
+
+    }
+
+    private void paint(double time){
         //all elements position and size must be linked to the height and the width
+        AnimatedImage skin = new AnimatedImage("Resources/Sprites/shark.jpg");
         gc.drawImage(skin.getFrame(time),width/2,height/2,width/10,height/10);
     }
 }
