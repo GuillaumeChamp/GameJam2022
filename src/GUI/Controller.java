@@ -26,6 +26,20 @@ public class Controller {
      * @param player the player
      */
     public static void action(Player player){
-
+        if (inputString.contains("Z")) {
+            player.move("up");
+        }
+        if (inputString.contains("D")) {
+            player.move("right");
+        }
+        if (inputString.contains("S")) {
+            player.move("down");
+        }
+        if (inputString.contains("Q")) {
+            player.move("left");
+        }
+        else {
+            player.move("none");
+        }
     }
 }

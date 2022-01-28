@@ -15,11 +15,14 @@ public class Player extends Entity implements OnWallCollision, OnEntityCollision
     public double attack = 3;
     public double speed = 1;
     public double range = 3;
-    public double attackSpeed = 1;
+    public double attackSpeed = 1; // per second
 
     private int yellowStack;
     private int greenStack;
     private int blackStack;
+
+    private double xSpeed;
+    private double ySpeed;
 
     private ArrayList<Item> items = new ArrayList<>();
 
@@ -57,6 +60,27 @@ public class Player extends Entity implements OnWallCollision, OnEntityCollision
         greenStack -= item.getCost()[1];
         blackStack -= item.getCost()[2];
         item.applyEffect(this);
+
+    }
+
+    public void move(String direction) {
+
+        switch (direction) {
+            case "up" :
+                yPos -= speed;
+                break;
+            case "right" :
+                xPos += speed;
+                break;
+            case "down" :
+                yPos += speed;
+                break;
+            case "left" :
+                xPos -= speed;
+                break;
+            default :
+                break;
+        }
 
     }
 
