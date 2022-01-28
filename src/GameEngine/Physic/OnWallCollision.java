@@ -1,6 +1,6 @@
 package GameEngine.Physic;
 
-import GameEngine.Level.Block;
+import GameEngine.Level.*;
 
 public interface OnWallCollision {
     /**

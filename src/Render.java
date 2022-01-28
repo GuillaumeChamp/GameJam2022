@@ -1,5 +1,6 @@
-import Audio.BackgroundMusic;
-import GUI.GameScene;
+import Audio.*;
+import GUI.*;
+
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
