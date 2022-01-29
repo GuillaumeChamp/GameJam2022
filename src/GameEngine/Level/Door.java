@@ -1,7 +1,7 @@
 package GameEngine.Level;
 
 import GUI.AnimatedImage;
-import GUI.GameScene;
+import GameEngine.Constant;
 import GameEngine.Entity.Entity;
 import javafx.scene.image.Image;
 
@@ -23,29 +23,29 @@ public class Door extends Entity {
         int imageID=0;
         switch (pos){
             case Nord -> {
-                xPos = GameScene.width/2;
+                xPos = Constant.ROOMSWITHD/2;
                 yPos = 0;
                 this.height=20;
                 this.width=80;
             }
             case Est -> {
                 imageID = 1;
-                xPos = GameScene.width;
-                yPos = GameScene.height/2;
+                xPos = Constant.ROOMSWITHD;
+                yPos = Constant.ROOMHEIGHT/2;
                 this.height=80;
                 this.width=20;
             }
             case Sud -> {
                 imageID = 2;
-                xPos = GameScene.width/2;
-                yPos = GameScene.height;
+                xPos = Constant.ROOMSWITHD/2;
+                yPos = Constant.ROOMHEIGHT;
                 this.height=20;
                 this.width=80;
             }
             case Ouest -> {
                 imageID = 3;
                 xPos = 0;
-                yPos = GameScene.height/2;
+                yPos = Constant.ROOMHEIGHT/2;
                 this.height=80;
                 this.width=20;
             }

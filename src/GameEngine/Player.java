@@ -1,9 +1,11 @@
 package GameEngine;
 
 import GUI.AnimatedImage;
-import GUI.GameScene;
 import GameEngine.Entity.*;
-import GameEngine.Level.*;
+import GameEngine.Level.Block;
+import GameEngine.Level.Door;
+import GameEngine.Level.Floor;
+import GameEngine.Level.Room;
 import GameEngine.Physic.OnEntityCollision;
 import GameEngine.Physic.OnWallCollision;
 import javafx.geometry.Rectangle2D;
@@ -64,7 +66,6 @@ public class Player extends Entity implements OnWallCollision, OnEntityCollision
             System.out.println("Workbench found\n");
         }
         if (entity.getClass() == Door.class) {
-            System.out.println("new Room");
             changeRoom((Door) entity);
         }
         if (entity.getClass() == Enemy.class) {
@@ -152,20 +153,20 @@ public class Player extends Entity implements OnWallCollision, OnEntityCollision
         this.currentRoom = door.getNextRoom();
         switch (door.getPosition()){
             case Nord -> {
-                xPos = (GameScene.width-this.width)/2;
-                yPos = GameScene.height-this.height;
+                //xPos = Constant.ROOMSWITHD/2;
+                yPos = Constant.ROOMHEIGHT-this.height;
             }
             case Sud -> {
-                xPos = (GameScene.width-this.width)/2;
-                yPos = 0;
+                //xPos = (Constant.ROOMSWITHD-this.width)/2;
+                yPos = 0+this.height;
             }
             case Est -> {
-                xPos = 0;
-                yPos = (GameScene.height-this.height)/2;
+                xPos = 0+this.width;
+                //yPos = (Constant.ROOMHEIGHT-this.height)/2;
             }
             case Ouest -> {
-                xPos = GameScene.width-this.width;
-                yPos = (GameScene.height-this.height)/2;
+                xPos = Constant.ROOMSWITHD-this.width;
+                //yPos = (Constant.ROOMHEIGHT-this.height)/2;
             }
         }
     }
