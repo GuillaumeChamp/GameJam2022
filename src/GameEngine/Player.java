@@ -149,7 +149,6 @@ public class Player extends Entity implements OnWallCollision, OnEntityCollision
                     e.getsHurt(this.attack);
                 }
             } catch (Exception exc) {
-                System.out.println("Enemy dead");
                 currentRoom.getEnemies().remove(e);
                 Collectible.Type type = e.getType();
                 currentRoom.getEntities().add(new Collectible(type,e.getxPos(),e.getyPos(),e.getHeight(),e.getWidth()));

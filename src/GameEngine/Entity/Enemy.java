@@ -41,7 +41,7 @@ public class Enemy extends Entity implements Chase {
                 break;}
             default : {skin = new AnimatedImage(censured_frames);
                 type = Collectible.Type.BLACK;break;}
-        }//todo :load loot
+        }
     }
 
     @Override
