@@ -1,17 +1,18 @@
 package GameEngine.Level;
 
+import GUI.AnimatedImage;
 import GameEngine.Entity.Entity;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
 
 public class Door extends Entity {
-    enum position {Nord,Sud,Est,Ouest}
+    public enum Position {Nord,Sud,Est,Ouest}
     private final Room nextRoom;
-    private final position position;
+    private final Position position;
 
-    public Door(position pos, Room nextRoom){
+    public Door(Position pos, Room nextRoom){
+        this.skin=new AnimatedImage("Resources/Sprites/door.png");
         this.nextRoom = nextRoom;
         this.position = pos;
         int imageID=0;
@@ -39,10 +40,10 @@ public class Door extends Entity {
         Image source = new Image("Resources/Sprites/door.png");
         PixelReader reader = source.getPixelReader();
         Image[] temp = new Image[1];
-        temp[0] = new WritableImage(reader, 40*imageID, 0, 40, 40);
-        skin.setFrames(temp);
+        temp[0] = new WritableImage(reader, 1600*imageID, 0, 1600, 900);
+
     }
 
-    public void nextRoom(){
-    }
+    public Room getNextRoom(){return nextRoom;}
+    public Position getPosition() {return position;}
 }

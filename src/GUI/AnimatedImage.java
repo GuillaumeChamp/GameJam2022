@@ -1,40 +1,31 @@
 package GUI;
 
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 public class AnimatedImage
 {
     protected Image[] frames;
     protected double duration;
 
-    public AnimatedImage() {}
-
     public AnimatedImage(String path){
-        //frames = ImageBuilder.build(path);
         frames = new Image[1];
+        frames[0] = new Image(path);
+    }
+
+    public AnimatedImage(String path,int animationId,int XStep,int YStep ){
         try {
-            frames[0] = new Image(path);
+            frames = ImageCropper.crop(path,animationId,XStep,YStep);
         }catch (Exception e){
             e.printStackTrace();
             frames[0]= new Image("Resources/Sprites/shark.jpg");
         }
-        duration = 1;
+        duration = 0.5;
     }
 
     public Image getFrame(double time)
     {
         int index = (int)((time % (frames.length * duration)) / duration);
         return frames[index];
-    }
-
-
-    /**
-     * Useful for animation and cinematic
-     * @param duration frame duration on second (I guess)
-     */
-    public void setDuration(double duration) {
-        this.duration = duration;
     }
 
     /**

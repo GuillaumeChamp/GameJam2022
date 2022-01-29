@@ -1,8 +1,6 @@
 package GameEngine.Entity;
-import javafx.animation.AnimationTimer;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import GUI.*;
+
+import GUI.AnimatedImage;
 
 public abstract class Entity {
     protected double xPos;
@@ -10,4 +8,24 @@ public abstract class Entity {
     protected double height;
     protected double width;
     protected AnimatedImage skin;
+
+    public AnimatedImage getSkin() {
+        return skin;
+    }
+
+    public double getxPos() {
+        return xPos;
+    }
+
+    public double getyPos() {
+        return yPos;
+    }
+
+    public double getHeight() {
+        return height;
+    }
+
+    public double getWidth() {
+        return width;
+    }
 }
