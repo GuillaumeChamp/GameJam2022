@@ -1,7 +1,5 @@
 package GUI;
 
-import GameEngine.Entity.Item;
-import GameEngine.Entity.WorkBench;
 import GameEngine.Loader.ItemsLoader;
 import GameEngine.Player;
 import javafx.scene.Parent;
@@ -9,8 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-
-import java.awt.*;
 
 public class GameScene extends Scene {
     private final GraphicsContext gc;
@@ -69,7 +65,6 @@ public class GameScene extends Scene {
         Image room = new Image("Resources/Sprites/Room.png");
         gc.drawImage(room,0,0,width,height);
         gc.drawImage(skin.getFrame(time),width/2,height/2,width/10,height/10);
-
 
 
     }
