@@ -2,7 +2,6 @@ package GUI;
 
 import GameEngine.Entity.Item;
 import GameEngine.Entity.WorkBench;
-import GameEngine.Level.Room;
 import GameEngine.Loader.ItemsLoader;
 import GameEngine.Player;
 import javafx.scene.Parent;
@@ -31,9 +30,6 @@ public class GameScene extends Scene {
         ItemsLoader il = new ItemsLoader();
         il.fillItems(".//src/Resources/Data/Items.csv");
         player = new Player();
-        Room room = new Room(9);
-        room.load(9);
-        System.out.println("Done");
 
     }
 
