@@ -4,14 +4,17 @@ import GUI.AnimatedImage;
 import GUI.GameScene;
 import GameEngine.Entity.Entity;
 import javafx.scene.image.Image;
-import javafx.scene.image.PixelReader;
-import javafx.scene.image.WritableImage;
 
 public class Door extends Entity {
     public enum Position {Nord,Sud,Est,Ouest}
     private final Room nextRoom;
     private final Position position;
 
+    /**
+     * Create a door
+     * @param pos position of the door
+     * @param nextRoom room linked
+     */
     public Door(Position pos, Room nextRoom){
         this.nextRoom = nextRoom;
         this.position = pos;
@@ -47,10 +50,9 @@ public class Door extends Entity {
                 this.width=20;
             }
         }
-        Image source = new Image("Resources/Sprites/door.png");
-        PixelReader reader = source.getPixelReader();
+        Image source = new Image("Resources/Sprites/p"+imageID+".png");
         Image[] temp = new Image[1];
-        temp[0] = new WritableImage(reader, 1600*imageID, 0, 1600, 900);
+        temp[0] = source;
         this.skin=new AnimatedImage(temp);
     }
 

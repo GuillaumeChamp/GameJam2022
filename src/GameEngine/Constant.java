@@ -1,7 +1,7 @@
 package GameEngine;
 
 public class Constant {
-    static double ROOMHEIGHT=7*111;
-    static double ROOMSWITHD=11*145;
+    static double ROOMHEIGHT=900;
+    static double ROOMSWITHD=1600;
     static int[] seed = {1,1,2,2,1,6};
 }

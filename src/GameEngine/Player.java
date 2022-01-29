@@ -79,7 +79,6 @@ public class Player extends Entity implements OnWallCollision, OnEntityCollision
 
     @Override
     public void onWallCollision(Block block) {
-
     }
 
     public void get(Item item) {
