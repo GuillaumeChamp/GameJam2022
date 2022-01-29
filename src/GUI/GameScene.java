@@ -4,7 +4,6 @@ import GameEngine.Constant;
 import GameEngine.Entity.Enemy;
 import GameEngine.Entity.Entity;
 import GameEngine.Entity.Rock;
-import GameEngine.Entity.WorkBench;
 import GameEngine.Level.Door;
 import GameEngine.Loader.ItemsLoader;
 import GameEngine.Player;
@@ -36,11 +35,8 @@ public class GameScene extends Scene {
         soundSetup();
     }
     private void soundSetup(){
-        Constant.deathSound.setBalance(10);
-        Constant.deathSound.setVolume(10);
-
-        Constant.autoSound.setBalance(10);
-        Constant.autoSound.setVolume(10);
+        Constant.deathSound.setVolume(Constant.deathSound.getVolume()/8);
+        Constant.autoSound.setVolume(Constant.autoSound.getVolume()/8);
     }
 
     /**
@@ -107,8 +103,5 @@ public class GameScene extends Scene {
         gc.drawImage(player.getSkin().getFrame(time),player.getxPos()*xRatio,player.getyPos()* yRatio, player.getWidth()*xRatio, player.getHeight()* yRatio);
         //gc.strokeRect(player.getxPos()*xRatio,player.getyPos()*yRatio,player.getWidth()*xRatio,player.getHeight()*yRatio);
 
-        if (player.displayWorkBench) {
-            //gc.drawImage(new Image("Resources/Sprites/workbenchInterface.png"), 100*xRatio, 100* yRatio, 1400*xRatio, 700* yRatio);
-        }
     }
 }

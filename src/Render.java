@@ -20,7 +20,7 @@ public class Render extends Application {
     final double defaultHeight = Screen.getPrimary().getBounds().getHeight()-borderYSize;
 
     Canvas canvas = new Canvas(defaultWidth, defaultHeight);
-    BackgroundMusic sound = new BackgroundMusic("default");
+    BackgroundMusic sound = new BackgroundMusic("Mystic_Forest");
 
     public void start(Stage theStage) {
         theStage.setTitle("GameJam2022");

@@ -40,7 +40,7 @@ public class BackgroundMusic implements Runnable{
     @Override
     public void run() {
         music.setCycleCount(Integer.MAX_VALUE);
-        music.setVolume(music.getVolume()/8);
+        music.setVolume(music.getVolume()/6);
         music.setOnReady(()-> {
             music.play();
             music.setOnEndOfMedia(music::play);
