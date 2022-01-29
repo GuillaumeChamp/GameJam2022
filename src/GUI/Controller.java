@@ -12,10 +12,6 @@ public class Controller {
     private static boolean hits = false;
 
     public static void input(KeyCode code){
-        if(code==KeyCode.K) {
-            hits = true;
-            return;
-        }
         if (!inputString.contains(code)) inputString.add(code);
     }
     public static void output(KeyCode code){
@@ -30,20 +26,19 @@ public class Controller {
     public static void action(Player player) throws Exception {
         if (inputString.contains(KeyCode.Z)) {
             player.move("up");
-            if (hits) player.hit("up");
         }
         if (inputString.contains(KeyCode.D)) {
             player.move("right");
-            if (hits) player.hit("right");
         }
         if (inputString.contains(KeyCode.S)) {
             player.move("down");
-            if (hits) player.hit("down");
         }
         if (inputString.contains(KeyCode.Q)) {
             player.move("left");
-            if (hits) player.hit("left");
         }
+        if (inputString.contains(KeyCode.K))
+            player.attack();
+
         player.detectCollision(player.currentRoom.getEntities());
     }
 }

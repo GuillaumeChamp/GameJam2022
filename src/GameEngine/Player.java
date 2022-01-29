@@ -119,24 +119,17 @@ public class Player extends Entity implements OnWallCollision, OnEntityCollision
         if(xPos>=Constant.ROOMSWITHD) xPos=Constant.ROOMSWITHD;
     }
 
-    public void hit(String direction){
-        //int boxSide = 50;
-        System.out.println("Graou");
+    public void attack(){
+        double boxSide = range*10;
         Rectangle2D hitbox = new Rectangle2D(0,0,1,1);
-        switch (direction) {
-            case "up" -> {
+        if (skin.equals(up))
                 hitbox = new Rectangle2D(this.xPos-50, this.yPos-50, 150, 50);
-            }
-            case "right" -> {
+        if (skin.equals(right))
                 hitbox = new Rectangle2D(this.xPos+50, this.yPos+50, 50, 150);
-            }
-            case "down" -> {
+        if (skin.equals(down))
                 hitbox = new Rectangle2D(this.xPos-50, this.yPos+50, 150, 50);
-            }
-            case "left" -> {
+        if (skin.equals(left))
                 hitbox = new Rectangle2D(this.xPos+50, this.yPos-50, 50, 150);
-            }
-        }
         for (Enemy e : currentRoom.getEnemies()) {
             try{
                 if (hitbox.intersects(e.getxPos(),e.getyPos(),e.getWidth(),e.getHeight())) {
@@ -152,22 +145,14 @@ public class Player extends Entity implements OnWallCollision, OnEntityCollision
     public void changeRoom(Door door) {
         this.currentRoom = door.getNextRoom();
         switch (door.getPosition()){
-            case Nord -> {
-                //xPos = Constant.ROOMSWITHD/2;
+            case Nord ->
                 yPos = Constant.ROOMHEIGHT-this.height;
-            }
-            case Sud -> {
-                //xPos = (Constant.ROOMSWITHD-this.width)/2;
+            case Sud ->
                 yPos = 0+this.height;
-            }
-            case Est -> {
+            case Est ->
                 xPos = 0+this.width;
-                //yPos = (Constant.ROOMHEIGHT-this.height)/2;
-            }
-            case Ouest -> {
+            case Ouest ->
                 xPos = Constant.ROOMSWITHD-this.width;
-                //yPos = (Constant.ROOMHEIGHT-this.height)/2;
-            }
         }
     }
 

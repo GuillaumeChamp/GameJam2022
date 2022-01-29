@@ -10,11 +10,10 @@ import java.util.ArrayList;
 
 public class Room {
 
-    private ArrayList<Rock> rocks = new ArrayList<>();
-    private ArrayList<Entity> entities = new ArrayList<>();
-    private ArrayList<Enemy> enemies = new ArrayList<>();
-    private ArrayList<Door> exits;
-    private final String fileName = ".//src/Resources/Data/Rooms.csv";
+    private final ArrayList<Rock> rocks = new ArrayList<>();
+    private final ArrayList<Entity> entities = new ArrayList<>();
+    private final ArrayList<Enemy> enemies = new ArrayList<>();
+    private final ArrayList<Door> exits;
 
     public Room(int RoomId){
         exits = new ArrayList<>(4);
@@ -23,6 +22,7 @@ public class Room {
 
     public void load(int RoomId){
         try {
+            String fileName = ".//src/Resources/Data/Rooms.csv";
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
             String line = reader.readLine();
             for (int i = 0; i < RoomId; i++) {
@@ -33,12 +33,18 @@ public class Room {
                 String[] elements = s.split(" ");
                 if (elements.length>1) {
                     switch (Integer.parseInt(elements[0])) {
-                        case 1 : {rocks.add(new Rock(Integer.parseInt(elements[1])*1600/11, Integer.parseInt(elements[2])*900/7)); break;}
-                        case 2 : {entities.add(new WorkBench(new Item[3],Integer.parseInt(elements[1])*1600/11, Integer.parseInt(elements[2])*900/7)); break;}
-                        case 3 : {entities.add(new Recycling(Integer.parseInt(elements[1])*1600/11, Integer.parseInt(elements[2])*900/7)); break;}
-                        case 10 :
-                        case 11 :
-                        case 12 : {enemies.add(new Enemy(Integer.parseInt(elements[0]), Integer.parseInt(elements[1]), Integer.parseInt(elements[2]))); break;}
+                        case 1 -> {
+                            rocks.add(new Rock(Integer.parseInt(elements[1]) * 1600 / 11, Integer.parseInt(elements[2]) * 900 / 7));
+                        }
+                        case 2 -> {
+                            entities.add(new WorkBench(new Item[3], Integer.parseInt(elements[1]) * 1600 / 11, Integer.parseInt(elements[2]) * 900 / 7));
+                        }
+                        case 3 -> {
+                            entities.add(new Recycling(Integer.parseInt(elements[1]) * 1600 / 11, Integer.parseInt(elements[2]) * 900 / 7));
+                        }
+                        case 10, 11, 12 -> {
+                            enemies.add(new Enemy(Integer.parseInt(elements[0]), Integer.parseInt(elements[1]), Integer.parseInt(elements[2])));
+                        }
                     }
                 }
             }
