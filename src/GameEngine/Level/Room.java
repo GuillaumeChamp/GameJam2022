@@ -34,8 +34,8 @@ public class Room {
                 if (elements.length>1) {
                     switch (Integer.parseInt(elements[0])) {
                         case 1 : {rocks.add(new Rock(Integer.parseInt(elements[1])*1600/11, Integer.parseInt(elements[2])*900/7)); break;}
-                        case 2 : {entities.add(new WorkBench(new Item[3])); break;}
-                        case 3 : {entities.add(new Recycling(Integer.parseInt(elements[1]), Integer.parseInt(elements[2]))); break;}
+                        case 2 : {entities.add(new WorkBench(new Item[3],Integer.parseInt(elements[1])*1600/11, Integer.parseInt(elements[2])*900/7)); break;}
+                        case 3 : {entities.add(new Recycling(Integer.parseInt(elements[1])*1600/11, Integer.parseInt(elements[2])*900/7)); break;}
                         case 10 :
                         case 11 :
                         case 12 : {enemies.add(new Enemy(Integer.parseInt(elements[0]), Integer.parseInt(elements[1]), Integer.parseInt(elements[2]))); break;}

@@ -1,12 +1,19 @@
 package GameEngine.Entity;
 
+import GUI.AnimatedImage;
 import GameEngine.Player;
+import javafx.scene.image.Image;
 
 public class Recycling extends Entity {
+
+    Image[] recycling_frames = {new Image("Resources/Sprites/recycling.png")};
 
     public Recycling(int x,int y) {
         xPos=x;
         yPos=y;
+        width = 150;
+        height = 150;
+        skin = new AnimatedImage(recycling_frames);
     }
 
     public void exchange(Player player, Collectible give1, Collectible give2, Collectible take) {

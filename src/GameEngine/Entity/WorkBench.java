@@ -9,12 +9,12 @@ public class WorkBench extends Entity {
     private Item[] itemsHold;
     Image[] workbench_frames = {new Image("Resources/Sprites/workbench.png")};
 
-    public WorkBench(Item[] items) {
+    public WorkBench(Item[] items, int x, int y) {
         this.itemsHold = items;
-        xPos = 100;
-        yPos = 100;
-        width = 50;
-        height = 50;
+        xPos = x;
+        yPos = y;
+        width = 150;
+        height = 150;
         skin = new AnimatedImage(workbench_frames);
     }
 
