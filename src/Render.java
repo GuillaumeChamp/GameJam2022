@@ -15,6 +15,7 @@ public class Render extends Application {
     Group root = new Group();
     int borderXSize = 0;
     int borderYSize = 70;
+
     final double defaultWidth = Screen.getPrimary().getBounds().getWidth()-borderXSize;
     final double defaultHeight = Screen.getPrimary().getBounds().getHeight()-borderYSize;
 

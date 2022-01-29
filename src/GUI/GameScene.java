@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 
 import java.awt.*;
 
@@ -67,6 +68,8 @@ public class GameScene extends Scene {
     private void paint(double time){
         //all elements position and size must be linked to the height and the width
         AnimatedImage skin = new AnimatedImage("Resources/Sprites/shark.jpg");
+        Image room = new Image("Resources/Sprites/Room.png");
+        gc.drawImage(room,0,0,width,height);
         gc.drawImage(skin.getFrame(time),width/2,height/2,width/10,height/10);
     }
 }
