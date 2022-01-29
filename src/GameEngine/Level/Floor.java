@@ -24,10 +24,10 @@ public class Floor {
         }
     }
     private void addExit(int[][] seed,Room[][] rooms,int i,int j){
-        if (seed[i][j-1]!=0) rooms[i][j].addExit(Door.position.Nord,rooms[i][j-1]);
-        if (seed[i][j+1]!=0) rooms[i][j].addExit(Door.position.Sud,rooms[i][j+1]);
-        if (seed[i-1][j]!=0) rooms[i][j].addExit(Door.position.Est,rooms[i-1][j]);
-        if (seed[i+1][j]!=0) rooms[i][j].addExit(Door.position.Ouest,rooms[i+1][j]);
+        if (seed[i][j-1]!=0) rooms[i][j].addExit(Door.Position.Nord,rooms[i][j-1]);
+        if (seed[i][j+1]!=0) rooms[i][j].addExit(Door.Position.Sud,rooms[i][j+1]);
+        if (seed[i-1][j]!=0) rooms[i][j].addExit(Door.Position.Est,rooms[i-1][j]);
+        if (seed[i+1][j]!=0) rooms[i][j].addExit(Door.Position.Ouest,rooms[i+1][j]);
     }
 
     public Room[][] getRooms() {

@@ -11,8 +11,8 @@ import javafx.scene.image.Image;
 
 public class GameScene extends Scene {
     private final GraphicsContext gc;
-    private static double width;
-    private static double height;
+    public static double width;
+    public static double height;
     private final Canvas canvas;
     private Player player;
 
@@ -64,11 +64,12 @@ public class GameScene extends Scene {
         //all elements position and size must be linked to the height and the width
         Image room = new Image("Resources/Sprites/Room.png");
         gc.drawImage(room,0,0,width,height);
-        for(Door d : player.room.getExit()) {
+        for(Door d : player.currentRoom.getExits()) {
             gc.drawImage(d.getSkin().getFrame(time),0,0);
         }
         gc.drawImage(player.getSkin().getFrame(time),player.getxPos(),player.getyPos(), player.getWidth(), player.getHeight());
 
+        gc.fillRect(400,200,150,50);
 
     }
 }

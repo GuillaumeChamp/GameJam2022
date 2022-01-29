@@ -9,15 +9,19 @@ public class Controller {
 
     public static ArrayList<KeyCode> inputString=new ArrayList<>();
 
+    private static boolean hits = false;
+
     public static void input(KeyCode code){
-        if(code==KeyCode.X) {
-            System.out.println("rare event");
+        if(code==KeyCode.K) {
+            System.out.println("hit");
+            hits = true;
             return;
         }
         if (!inputString.contains(code)) inputString.add(code);
     }
     public static void output(KeyCode code){
         inputString.remove(code);
+        hits = false;
     }
 
     /**
@@ -27,15 +31,19 @@ public class Controller {
     public static void action(Player player){
         if (inputString.contains(KeyCode.Z)) {
             player.move("up");
+            if (hits) player.hit("up");
         }
         if (inputString.contains(KeyCode.D)) {
             player.move("right");
+            if (hits) player.hit("right");
         }
         if (inputString.contains(KeyCode.S)) {
             player.move("down");
+            if (hits) player.hit("down");
         }
         if (inputString.contains(KeyCode.Q)) {
             player.move("left");
+            if (hits) player.hit("left");
         }
     }
 }

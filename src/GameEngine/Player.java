@@ -1,21 +1,20 @@
 package GameEngine;
 
 import GUI.AnimatedImage;
-import GameEngine.Entity.Collectible;
-import GameEngine.Entity.Entity;
-import GameEngine.Entity.Item;
-import GameEngine.Entity.WorkBench;
-import GameEngine.Level.Block;
-import GameEngine.Level.Floor;
-import GameEngine.Level.Room;
+import GUI.GameScene;
+import GameEngine.Entity.*;
+import GameEngine.Level.*;
 import GameEngine.Physic.OnEntityCollision;
 import GameEngine.Physic.OnWallCollision;
+import javafx.geometry.Rectangle2D;
 
 import java.util.ArrayList;
 
 public class Player extends Entity implements OnWallCollision, OnEntityCollision {
-    public Floor actualFloor= new Floor(new int[]{0});
-    public Room room = actualFloor.getRooms()[4][4];
+
+    public Floor currentFloor = new Floor(new int[]{0});
+    public Room currentRoom = currentFloor.getRooms()[4][4];
+
     public double PV = 3;
     public double attack = 3;
     public double speed = 1;
@@ -55,6 +54,12 @@ public class Player extends Entity implements OnWallCollision, OnEntityCollision
         if (entity.getClass() == WorkBench.class) {
             System.out.println("Workbench found\n");
         }
+        if (entity.getClass() == Door.class) {
+            changeRoom((Door) entity);
+        }
+        if (entity.getClass() == Enemy.class) {
+            // TODO : degats sur le player
+        }
     }
 
     @Override
@@ -72,7 +77,7 @@ public class Player extends Entity implements OnWallCollision, OnEntityCollision
     }
 
     public void move(String direction) {
-        int speedFactor=50;
+        int speedFactor=30;
         //todo : make a smooth acceleration
         switch (direction) {
             case "up" -> {
@@ -96,6 +101,57 @@ public class Player extends Entity implements OnWallCollision, OnEntityCollision
 
     }
 
+    public void hit(String direction){
+        //int boxSide = 50;
+        Rectangle2D hitbox = new Rectangle2D(0,0,1,1);
+        switch (direction) {
+            case "up" -> {
+                hitbox = new Rectangle2D(this.xPos-50, this.yPos-50, 150, 50);
+            }
+            case "right" -> {
+                hitbox = new Rectangle2D(this.xPos+50, this.yPos+50, 50, 150);
+            }
+            case "down" -> {
+                hitbox = new Rectangle2D(this.xPos-50, this.yPos+50, 150, 50);
+            }
+            case "left" -> {
+                hitbox = new Rectangle2D(this.xPos+50, this.yPos-50, 50, 150);
+            }
+        }
+        for (Enemy e : currentRoom.getEnemies()) {
+            try{
+                if (hitbox.intersects(e.getxPos(),e.getyPos(),e.getWidth(),e.getHeight())) {
+                    e.getsHurt();
+                }
+            } catch (Exception exc) {
+                System.out.println("Enemy dead");
+                currentRoom.getEnemies().remove(e);
+            }
+        }
+    }
+
+    public void changeRoom(Door door) {
+        this.currentRoom = door.getNextRoom();
+        switch (door.getPosition()){
+            case Nord -> {
+                xPos = (GameScene.width-this.width)/2;
+                yPos = GameScene.height-this.height;
+            }
+            case Sud -> {
+                xPos = (GameScene.width-this.width)/2;
+                yPos = 0;
+            }
+            case Est -> {
+                xPos = 0;
+                yPos = (GameScene.height-this.height)/2;
+            }
+            case Ouest -> {
+                xPos = GameScene.width-this.width;
+                yPos = (GameScene.height-this.height)/2;
+            }
+        }
+    }
+
     // getters
     public ArrayList<Item> getItems() {return items;}
     public int getYellowStack() {return yellowStack;}
@@ -103,7 +159,7 @@ public class Player extends Entity implements OnWallCollision, OnEntityCollision
     public int getBlackStack() {return blackStack;}
     public AnimatedImage getSkin() {return skin;}
 
-
+    // setters
     public void setYellowStack(int ys) {yellowStack=ys;}
     public void setGreenStack(int gs) {greenStack=gs;}
     public void setBlackStack(int bs) {blackStack=bs;}

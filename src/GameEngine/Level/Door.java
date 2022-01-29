@@ -7,11 +7,11 @@ import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
 
 public class Door extends Entity {
-    enum position {Nord,Sud,Est,Ouest}
+    public enum Position {Nord,Sud,Est,Ouest}
     private final Room nextRoom;
-    private final position position;
+    private final Position position;
 
-    public Door(position pos, Room nextRoom){
+    public Door(Position pos, Room nextRoom){
         this.skin=new AnimatedImage("Resources/Sprites/door.png");
         this.nextRoom = nextRoom;
         this.position = pos;
@@ -41,9 +41,9 @@ public class Door extends Entity {
         PixelReader reader = source.getPixelReader();
         Image[] temp = new Image[1];
         temp[0] = new WritableImage(reader, 1600*imageID, 0, 1600, 900);
-        skin.setFrames(temp);
+
     }
 
-    public void nextRoom(){
-    }
+    public Room getNextRoom(){return nextRoom;}
+    public Position getPosition() {return position;}
 }
