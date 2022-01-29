@@ -5,9 +5,11 @@ import GameEngine.Player;
 import javafx.scene.image.Image;
 
 public class Collectible extends Entity {
-    public enum Type {YELLOW, GREEN, BLACK, RED};
+    public enum Type {YELLOW, GREEN, BLACK, RED}
 
     private Type type;
+
+    public Collectible(Type type) {this.type=type;}
 
     public Collectible(Type type, double x, double y, double h, double w, AnimatedImage skin) {
         this.type = type;

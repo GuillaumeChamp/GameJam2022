@@ -1,6 +1,8 @@
 package GUI;
 
+import GameEngine.Entity.Collectible;
 import GameEngine.Entity.Item;
+import GameEngine.Entity.Recycling;
 import GameEngine.Entity.WorkBench;
 import GameEngine.Loader.ItemsLoader;
 import GameEngine.Player;
@@ -30,7 +32,6 @@ public class GameScene extends Scene {
         ItemsLoader il = new ItemsLoader();
         il.fillItems(".//src/Resources/Data/Items.csv");
         player = new Player();
-
     }
 
     /**

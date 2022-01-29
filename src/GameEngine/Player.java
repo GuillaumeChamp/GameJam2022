@@ -19,9 +19,9 @@ public class Player extends Entity implements OnWallCollision, OnEntityCollision
     public double range = 3;
     public double attackSpeed = 1; // per second
 
-    private int yellowStack = 0;
-    private int greenStack = 0;
-    private int blackStack = 0;
+    private int yellowStack = 50;
+    private int greenStack = 50;
+    private int blackStack = 50;
 
     private ArrayList<Item> items = new ArrayList<>();
 
@@ -97,4 +97,8 @@ public class Player extends Entity implements OnWallCollision, OnEntityCollision
     public int getBlackStack() {return blackStack;}
     public AnimatedImage getSkin() {return skin;}
 
+
+    public void setYellowStack(int ys) {yellowStack=ys;}
+    public void setGreenStack(int gs) {greenStack=gs;}
+    public void setBlackStack(int bs) {blackStack=bs;}
 }
