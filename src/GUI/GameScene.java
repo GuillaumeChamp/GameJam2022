@@ -29,6 +29,7 @@ public class GameScene extends Scene {
         this.addController();
         ItemsLoader il = new ItemsLoader();
         il.fillItems(".//src/Resources/Data/Items.csv");
+        player = new Player();
 
     }
 
