@@ -1,6 +1,7 @@
 package GUI;
 
 import GameEngine.Constant;
+import GameEngine.Entity.Enemy;
 import GameEngine.Entity.Entity;
 import GameEngine.Entity.Rock;
 import GameEngine.Level.Door;
@@ -85,6 +86,11 @@ public class GameScene extends Scene {
         for(Rock r: player.currentRoom.getRocks()){
             gc.drawImage(r.getSkin().getFrame(time),r.getxPos()*xRatio,r.getyPos()*yRation,r.getWidth()*xRatio,r.getHeight()*yRation);
             gc.strokeRect(r.getxPos()*xRatio,r.getyPos()*yRation,r.getWidth()*xRatio,r.getHeight()*yRation);
+        }
+
+        for(Enemy e: player.currentRoom.getEnemies()){
+            gc.drawImage(e.getSkin().getFrame(time),e.getxPos()*xRatio,e.getyPos()*yRation,e.getWidth()*xRatio,e.getHeight()*yRation);
+            gc.strokeRect(e.getxPos()*xRatio,e.getyPos()*yRation,e.getWidth()*xRatio,e.getHeight()*yRation);
         }
 
         gc.drawImage(player.getSkin().getFrame(time),player.getxPos()*xRatio,player.getyPos()*yRation, player.getWidth()*xRatio, player.getHeight()*yRation);
