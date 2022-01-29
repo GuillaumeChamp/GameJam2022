@@ -1,5 +1,6 @@
 package GameEngine;
 
+import GUI.AnimatedImage;
 import GameEngine.Entity.Collectible;
 import GameEngine.Entity.Entity;
 import GameEngine.Entity.Item;
@@ -94,5 +95,6 @@ public class Player extends Entity implements OnWallCollision, OnEntityCollision
     public int getYellowStack() {return yellowStack;}
     public int getGreenStack() {return greenStack;}
     public int getBlackStack() {return blackStack;}
+    public AnimatedImage getSkin() {return skin;}
 
 }
