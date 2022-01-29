@@ -21,13 +21,14 @@ public class Item {
     }
 
     public void applyEffect(Player player) {
-        switch (name) {
-            case "name" :
-                player.PV++;
-                break;
-            default :
-                break;
-        }
+        player.PV += effect[0];
+        player.attack += effect[1];
+        player.attack *= effect[2];
+        player.speed += effect[3];
+        player.range += effect[4];
+        player.attackSpeed += effect[5];
+
+        //TODO : manage EFF special effect
     }
 
     // getters

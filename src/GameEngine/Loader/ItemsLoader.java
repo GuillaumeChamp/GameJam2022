@@ -44,4 +44,8 @@ public class ItemsLoader {
             System.out.println("File not found, can't read");
         }
     }
+
+    public ArrayList<Item> getAllItems() {
+        return allItems;
+    }
 }

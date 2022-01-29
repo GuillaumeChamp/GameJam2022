@@ -1,10 +1,15 @@
 package GUI;
 
+import GameEngine.Entity.Item;
+import GameEngine.Entity.WorkBench;
 import GameEngine.Loader.ItemsLoader;
+import GameEngine.Player;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+
+import java.awt.*;
 
 public class GameScene extends Scene {
     private final GraphicsContext gc;
@@ -20,8 +25,13 @@ public class GameScene extends Scene {
         GameScene.height = height;
         this.addResizeable();
         this.addController();
+
         ItemsLoader il = new ItemsLoader();
         il.fillItems(".//src/Resources/Data/Items.csv");
+        Item[] itemsTest = {il.getAllItems().get(6),il.getAllItems().get(16),il.getAllItems().get(18)};
+        WorkBench wb = new WorkBench(itemsTest);
+        Player playerTest = new Player();
+        wb.craft(playerTest,il.getAllItems().get(18));
     }
 
     /**

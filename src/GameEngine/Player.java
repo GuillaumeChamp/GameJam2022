@@ -17,14 +17,15 @@ public class Player extends Entity implements OnWallCollision, OnEntityCollision
     public double range = 3;
     public double attackSpeed = 1; // per second
 
-    private int yellowStack;
-    private int greenStack;
-    private int blackStack;
-
-    private double xSpeed;
-    private double ySpeed;
+    private int yellowStack = 0;
+    private int greenStack = 0;
+    private int blackStack = 0;
 
     private ArrayList<Item> items = new ArrayList<>();
+
+    public Player() {
+
+    }
 
     @Override
     public void onEntityCollision(Entity entity) {
