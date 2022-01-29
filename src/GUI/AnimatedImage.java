@@ -7,9 +7,8 @@ public class AnimatedImage
     protected Image[] frames;
     protected double duration;
 
-    public AnimatedImage(String path){
-        frames = new Image[1];
-        frames[0] = new Image(path);
+    public AnimatedImage(Image[] images){
+        frames = images;
     }
 
     public AnimatedImage(String path,int animationId,int XStep,int YStep ){

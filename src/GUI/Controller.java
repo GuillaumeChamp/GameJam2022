@@ -13,7 +13,6 @@ public class Controller {
 
     public static void input(KeyCode code){
         if(code==KeyCode.K) {
-            System.out.println("hit");
             hits = true;
             return;
         }
@@ -28,7 +27,7 @@ public class Controller {
      * function which move the player according to input and behaviour
      * @param player the player
      */
-    public static void action(Player player){
+    public static void action(Player player) throws Exception {
         if (inputString.contains(KeyCode.Z)) {
             player.move("up");
             if (hits) player.hit("up");
@@ -45,5 +44,6 @@ public class Controller {
             player.move("left");
             if (hits) player.hit("left");
         }
+        player.detectCollision(player.currentRoom.getEntities());
     }
 }

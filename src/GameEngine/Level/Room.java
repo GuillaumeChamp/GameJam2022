@@ -1,6 +1,7 @@
 package GameEngine.Level;
 
 import GameEngine.Entity.Enemy;
+import GameEngine.Entity.Entity;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -9,7 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Room {
-
+    private ArrayList<Entity> entities = new ArrayList<>();
     private ArrayList<Enemy> enemies = new ArrayList<>();
     private ArrayList<Door> exits;
     private final String fileName = ".//src/Resources/Data/Rooms.csv";
@@ -41,10 +42,15 @@ public class Room {
     public void addExit(Door.Position position, Room nextRoom){
         Door door = new Door(position,nextRoom);
         this.exits.add(door);
+        this.entities.add(door);
     }
 
     public ArrayList<Door> getExits() {
         return exits;
+    }
+
+    public ArrayList<Entity> getEntities() {
+        return entities;
     }
 
     public ArrayList<Enemy> getEnemies() {return enemies;}

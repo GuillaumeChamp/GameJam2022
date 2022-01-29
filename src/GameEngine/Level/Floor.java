@@ -19,6 +19,10 @@ public class Floor {
         for (int i=1;i<8;i++){
             for (int j=1;j<8;j++) {
                 rooms[i][j] = new Room(floorSeed[i][j]);
+            }
+        }
+        for (int i=1;i<8;i++){
+            for (int j=1;j<8;j++) {
                 this.addExit(floorSeed,rooms,i,j);
             }
         }

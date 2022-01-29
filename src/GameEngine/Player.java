@@ -25,13 +25,13 @@ public class Player extends Entity implements OnWallCollision, OnEntityCollision
     private int greenStack = 50;
     private int blackStack = 50;
 
-    private AnimatedImage idle = new AnimatedImage("Resources/Sprites/albear.png",4,300,300);
-    private AnimatedImage up = new AnimatedImage("Resources/Sprites/albear.png",1,300,300); //300*300
-    private AnimatedImage down = new AnimatedImage("Resources/Sprites/albear.png",0,300,300);
-    private AnimatedImage right = new AnimatedImage("Resources/Sprites/albear.png",2,300,300);
-    private AnimatedImage left = new AnimatedImage("Resources/Sprites/albear.png",3,300,300);
+    private final AnimatedImage idle = new AnimatedImage("Resources/Sprites/albear.png",4,300,300);
+    private final AnimatedImage up = new AnimatedImage("Resources/Sprites/albear.png",1,300,300); //300*300
+    private final AnimatedImage down = new AnimatedImage("Resources/Sprites/albear.png",0,300,300);
+    private final AnimatedImage right = new AnimatedImage("Resources/Sprites/albear.png",2,300,300);
+    private final AnimatedImage left = new AnimatedImage("Resources/Sprites/albear.png",3,300,300);
 
-    private ArrayList<Item> items = new ArrayList<>();
+    private final ArrayList<Item> items = new ArrayList<>();
 
     public Player() {
         xPos = 50;
@@ -42,7 +42,16 @@ public class Player extends Entity implements OnWallCollision, OnEntityCollision
     }
 
     @Override
-    public void onEntityCollision(Entity entity) {
+    public void detectCollision(ArrayList<Entity> entities) throws Exception {
+        Rectangle2D PlayerHitbox = new Rectangle2D(xPos,yPos,width,height);
+        for (Entity e: entities) {
+            Rectangle2D EntityHitbox = new Rectangle2D(e.getxPos(),e.getyPos(),e.getWidth(),e.getHeight());
+            if (EntityHitbox.intersects(PlayerHitbox)) onEntityCollision(e);
+        }
+    }
+
+    @Override
+    public void onEntityCollision(Entity entity) throws Exception {
         if (entity.getClass() == Collectible.class) {
             switch (((Collectible) entity).getType()) {
                 case YELLOW -> yellowStack++;
@@ -55,11 +64,17 @@ public class Player extends Entity implements OnWallCollision, OnEntityCollision
             System.out.println("Workbench found\n");
         }
         if (entity.getClass() == Door.class) {
+            System.out.println("new Room");
             changeRoom((Door) entity);
         }
         if (entity.getClass() == Enemy.class) {
-            // TODO : degats sur le player
+            this.takeDamage();
         }
+    }
+
+    private void takeDamage() throws Exception {
+        this.PV = this.PV - 0.5;
+        if (this.PV<=0) throw new Exception("Game Over");
     }
 
     @Override
@@ -98,11 +113,15 @@ public class Player extends Entity implements OnWallCollision, OnEntityCollision
             }
             default -> skin = idle;
         }
-
+        if(yPos<=5) yPos=5;
+        if(yPos>=Constant.ROOMHEIGHT) yPos=Constant.ROOMHEIGHT;
+        if(xPos<=5) xPos=5;
+        if(xPos>=Constant.ROOMSWITHD) xPos=Constant.ROOMSWITHD;
     }
 
     public void hit(String direction){
         //int boxSide = 50;
+        System.out.println("Graou");
         Rectangle2D hitbox = new Rectangle2D(0,0,1,1);
         switch (direction) {
             case "up" -> {

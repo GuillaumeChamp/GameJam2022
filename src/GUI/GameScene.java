@@ -1,5 +1,6 @@
 package GUI;
 
+import GameEngine.Entity.Entity;
 import GameEngine.Level.Door;
 import GameEngine.Loader.ItemsLoader;
 import GameEngine.Player;
@@ -8,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 
 public class GameScene extends Scene {
     private final GraphicsContext gc;
@@ -27,7 +29,6 @@ public class GameScene extends Scene {
         ItemsLoader il = new ItemsLoader();
         il.fillItems(".//src/Resources/Data/Items.csv");
         player = new Player();
-
     }
 
     /**
@@ -55,21 +56,29 @@ public class GameScene extends Scene {
      * @param time current time, used to animated image
      */
     public void tick(double time){
+        try {
+            Controller.action(player);
+        }catch (Exception e){
+            //TODO : trigger game over
+        }
         paint(time);
-        Controller.action(player);
-
     }
 
     private void paint(double time){
         //all elements position and size must be linked to the height and the width
         Image room = new Image("Resources/Sprites/Room.png");
         gc.drawImage(room,0,0,width,height);
+        gc.setStroke(Color.RED);
         for(Door d : player.currentRoom.getExits()) {
             gc.drawImage(d.getSkin().getFrame(time),0,0);
+            gc.strokeRect(d.getxPos(),d.getyPos(),d.getWidth(),d.getHeight());
+        }
+        for(Entity e: player.currentRoom.getEntities()){
+            gc.drawImage(e.getSkin().getFrame(time),e.getxPos(),e.getyPos(),e.getWidth(),e.getHeight());
+            gc.strokeRect(e.getxPos(),e.getyPos(),e.getWidth(),e.getHeight());
         }
         gc.drawImage(player.getSkin().getFrame(time),player.getxPos(),player.getyPos(), player.getWidth(), player.getHeight());
-
-        gc.fillRect(400,200,150,50);
+        gc.strokeRect(player.getxPos(),player.getyPos(),player.getWidth(),player.getHeight());
 
     }
 }
