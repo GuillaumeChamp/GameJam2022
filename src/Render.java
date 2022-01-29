@@ -25,7 +25,7 @@ public class Render extends Application {
     public void start(Stage theStage) {
         theStage.setTitle("GameJam2022");
         theStage.setMaximized(true);
-        theStage.getIcons().add(new Image("Resources/Sprites/shark.jpg"));
+        theStage.getIcons().add(new Image("Resources/logo.png"));
         root.getChildren().add(canvas);
         GameScene scene = new GameScene(root, canvas, defaultWidth, defaultHeight);
         theStage.setScene(scene);

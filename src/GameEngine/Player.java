@@ -141,11 +141,11 @@ public class Player extends Entity implements OnWallCollision, OnEntityCollision
         if (skin.equals(up))
                 hitbox = new Rectangle2D(this.xPos-50, this.yPos-50, 150, 50);
         if (skin.equals(right))
-                hitbox = new Rectangle2D(this.xPos+50, this.yPos+50, 50, 150);
+                hitbox = new Rectangle2D(this.xPos+50, this.yPos-50, 50, 150);
         if (skin.equals(down))
                 hitbox = new Rectangle2D(this.xPos-50, this.yPos+50, 150, 50);
         if (skin.equals(left))
-                hitbox = new Rectangle2D(this.xPos+50, this.yPos-50, 50, 150);
+                hitbox = new Rectangle2D(this.xPos-50, this.yPos-50, 50, 150);
         for (Enemy e : currentRoom.getEnemies()) {
             try{
                 if (hitbox.intersects(e.getxPos(),e.getyPos(),e.getWidth(),e.getHeight())) {

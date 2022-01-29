@@ -29,9 +29,11 @@ public class Enemy extends Entity implements Chase {
         switch (tn) {
             case 4 : {skin = new AnimatedImage(boss_frames);
                 type = Collectible.Type.RED;
+                this.height=400;
+                this.width=400;
                 break;}
             case 10 : {skin = new AnimatedImage(tire_frames);
-                type = Collectible.Type.BLACK;;
+                type = Collectible.Type.BLACK;
                 break;}
             case 11 : {skin = new AnimatedImage(can_frames);
                 type = Collectible.Type.YELLOW;
