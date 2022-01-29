@@ -7,7 +7,7 @@ import java.util.*;
 
 public class ItemsLoader {
 
-    private ArrayList<Item> allItems = new ArrayList<>();
+    public static ArrayList<Item> allItems = new ArrayList<>();
 
     public void fillItems(String fileName) {
         try {

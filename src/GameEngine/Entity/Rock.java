@@ -11,8 +11,8 @@ public class Rock extends Entity {
         skin = new AnimatedImage(rock_frames);
         xPos = x;
         yPos = y;
-        width = 130;
-        height = 130;
+        width = 100;
+        height = 100;
     }
 
 }

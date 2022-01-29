@@ -1,7 +1,9 @@
 package GameEngine.Entity;
 
 import GUI.AnimatedImage;
+import GameEngine.Loader.ItemsLoader;
 import GameEngine.Player;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class WorkBench extends Entity {
@@ -28,6 +30,12 @@ public class WorkBench extends Entity {
         return item.getCost()[0]<player.getYellowStack()
                 && item.getCost()[1]<player.getGreenStack()
                 && item.getCost()[2]<player.getBlackStack();
+    }
+
+    public void setItemsHold(int index1, int index2, int index3) {
+        itemsHold[0] = ItemsLoader.allItems.get(index1);
+        itemsHold[1] = ItemsLoader.allItems.get(index2);
+        itemsHold[2] = ItemsLoader.allItems.get(index3);
     }
 
 }

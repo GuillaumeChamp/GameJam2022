@@ -28,7 +28,7 @@ public class Enemy extends Entity implements Chase {
         width = 80;
         height = 80;
         switch (tn) {
-            case 4 : {skin = new AnimatedImage(boss_frames);break;}
+            case 4 : {skin = new AnimatedImage(boss_frames); width=400; height=400; break;}
             case 10 : {skin = new AnimatedImage(tire_frames);break;}
             case 11 : {skin = new AnimatedImage(can_frames);break;}
             case 12 : {skin = new AnimatedImage(bottle_frames);break;}

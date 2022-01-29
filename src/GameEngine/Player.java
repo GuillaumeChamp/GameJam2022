@@ -35,6 +35,8 @@ public class Player extends Entity implements OnWallCollision, OnEntityCollision
 
     private final ArrayList<Item> items = new ArrayList<>();
 
+    public boolean displayWorkBench = false;
+
     public Player() {
         xPos = Constant.ROOMSWITHD/2;
         yPos = Constant.ROOMHEIGHT*3/4;
@@ -49,6 +51,7 @@ public class Player extends Entity implements OnWallCollision, OnEntityCollision
         for (Entity e: entities) {
             Rectangle2D EntityHitbox = new Rectangle2D(e.getxPos(),e.getyPos(),e.getWidth(),e.getHeight());
             if (EntityHitbox.intersects(playerHitbox)) onEntityCollision(e);
+            if (e.getClass()==WorkBench.class) {displayWorkBench=true;}
         }
     }
 

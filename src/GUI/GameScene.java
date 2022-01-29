@@ -4,6 +4,7 @@ import GameEngine.Constant;
 import GameEngine.Entity.Enemy;
 import GameEngine.Entity.Entity;
 import GameEngine.Entity.Rock;
+import GameEngine.Entity.WorkBench;
 import GameEngine.Level.Door;
 import GameEngine.Loader.ItemsLoader;
 import GameEngine.Player;
@@ -73,28 +74,33 @@ public class GameScene extends Scene {
         gc.drawImage(room,0,0,width,height);
         gc.setStroke(Color.RED);
         double xRatio = width/Constant.ROOMSWITHD;
-        double yRation =height/Constant.ROOMHEIGHT;
+        double yRatio =height/Constant.ROOMHEIGHT;
+
         for(Door d : player.currentRoom.getExits()) {
             gc.drawImage(d.getSkin().getFrame(time),0,0,width,height);
-            gc.strokeRect(d.getxPos()*xRatio,d.getyPos()*yRation,d.getWidth(),d.getHeight());
+            //gc.strokeRect(d.getxPos()*xRatio,d.getyPos()*yRatio,d.getWidth(),d.getHeight());
         }
         for(Entity e: player.currentRoom.getEntities()){
-            gc.drawImage(e.getSkin().getFrame(time),e.getxPos()*xRatio,e.getyPos()*yRation,e.getWidth()*xRatio,e.getHeight()*yRation);
-            gc.strokeRect(e.getxPos()*xRatio,e.getyPos()*yRation,e.getWidth()*xRatio,e.getHeight()*yRation);
+            gc.drawImage(e.getSkin().getFrame(time),e.getxPos()*xRatio,e.getyPos()* yRatio,e.getWidth()*xRatio,e.getHeight()* yRatio);
+            //gc.strokeRect(e.getxPos()*xRatio,e.getyPos()*yRatio,e.getWidth()*xRatio,e.getHeight()*yRatio);
+            //if ((player.onEntityCollision(e))&&(e.getClass()== WorkBench.class)) {player.displayWorkBench=true;}
         }
 
         for(Rock r: player.currentRoom.getRocks()){
-            gc.drawImage(r.getSkin().getFrame(time),r.getxPos()*xRatio,r.getyPos()*yRation,r.getWidth()*xRatio,r.getHeight()*yRation);
-            gc.strokeRect(r.getxPos()*xRatio,r.getyPos()*yRation,r.getWidth()*xRatio,r.getHeight()*yRation);
+            gc.drawImage(r.getSkin().getFrame(time),r.getxPos()*xRatio,r.getyPos()* yRatio,r.getWidth()*xRatio,r.getHeight()* yRatio);
+            //gc.strokeRect(r.getxPos()*xRatio,r.getyPos()*yRatio,r.getWidth()*xRatio,r.getHeight()*yRatio);
         }
 
         for(Enemy e: player.currentRoom.getEnemies()){
-            gc.drawImage(e.getSkin().getFrame(time),e.getxPos()*xRatio,e.getyPos()*yRation,e.getWidth()*xRatio,e.getHeight()*yRation);
-            gc.strokeRect(e.getxPos()*xRatio,e.getyPos()*yRation,e.getWidth()*xRatio,e.getHeight()*yRation);
+            gc.drawImage(e.getSkin().getFrame(time),e.getxPos()*xRatio,e.getyPos()* yRatio,e.getWidth()*xRatio,e.getHeight()* yRatio);
+            //gc.strokeRect(e.getxPos()*xRatio,e.getyPos()*yRatio,e.getWidth()*xRatio,e.getHeight()*yRatio);
         }
 
-        gc.drawImage(player.getSkin().getFrame(time),player.getxPos()*xRatio,player.getyPos()*yRation, player.getWidth()*xRatio, player.getHeight()*yRation);
-        gc.strokeRect(player.getxPos()*xRatio,player.getyPos()*yRation,player.getWidth()*xRatio,player.getHeight()*yRation);
+        gc.drawImage(player.getSkin().getFrame(time),player.getxPos()*xRatio,player.getyPos()* yRatio, player.getWidth()*xRatio, player.getHeight()* yRatio);
+        //gc.strokeRect(player.getxPos()*xRatio,player.getyPos()*yRatio,player.getWidth()*xRatio,player.getHeight()*yRatio);
 
+        if (player.displayWorkBench) {
+            //gc.drawImage(new Image("Resources/Sprites/workbenchInterface.png"), 100*xRatio, 100* yRatio, 1400*xRatio, 700* yRatio);
+        }
     }
 }
