@@ -10,7 +10,6 @@ public class Controller {
     public static ArrayList<KeyCode> inputString=new ArrayList<>();
 
     public static void input(KeyCode code){
-        //here add exceptional input
         if(code==KeyCode.X) {
             System.out.println("rare event");
             return;
@@ -26,20 +25,17 @@ public class Controller {
      * @param player the player
      */
     public static void action(Player player){
-        if (inputString.contains("Z")) {
+        if (inputString.contains(KeyCode.Z)) {
             player.move("up");
         }
-        if (inputString.contains("D")) {
+        if (inputString.contains(KeyCode.D)) {
             player.move("right");
         }
-        if (inputString.contains("S")) {
+        if (inputString.contains(KeyCode.S)) {
             player.move("down");
         }
-        if (inputString.contains("Q")) {
+        if (inputString.contains(KeyCode.Q)) {
             player.move("left");
-        }
-        else {
-            player.move("none");
         }
     }
 }

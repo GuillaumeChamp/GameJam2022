@@ -1,17 +1,21 @@
 package GameEngine;
 
+import GUI.AnimatedImage;
 import GameEngine.Entity.Collectible;
 import GameEngine.Entity.Entity;
 import GameEngine.Entity.Item;
 import GameEngine.Entity.WorkBench;
-import GameEngine.Level.*;
-import GameEngine.Physic.*;
-import javafx.scene.image.Image;
+import GameEngine.Level.Block;
+import GameEngine.Level.Floor;
+import GameEngine.Level.Room;
+import GameEngine.Physic.OnEntityCollision;
+import GameEngine.Physic.OnWallCollision;
 
 import java.util.ArrayList;
 
 public class Player extends Entity implements OnWallCollision, OnEntityCollision {
-
+    public Floor actualFloor= new Floor(new int[]{0});
+    public Room room = actualFloor.getRooms()[4][4];
     public double PV = 3;
     public double attack = 3;
     public double speed = 1;
@@ -22,6 +26,12 @@ public class Player extends Entity implements OnWallCollision, OnEntityCollision
     private int greenStack = 0;
     private int blackStack = 0;
 
+    private AnimatedImage idle = new AnimatedImage("Resources/Sprites/albear.png",4,300,300);
+    private AnimatedImage up = new AnimatedImage("Resources/Sprites/albear.png",1,300,300); //300*300
+    private AnimatedImage down = new AnimatedImage("Resources/Sprites/albear.png",0,300,300);
+    private AnimatedImage right = new AnimatedImage("Resources/Sprites/albear.png",2,300,300);
+    private AnimatedImage left = new AnimatedImage("Resources/Sprites/albear.png",3,300,300);
+
     private ArrayList<Item> items = new ArrayList<>();
 
     public Player() {
@@ -29,24 +39,17 @@ public class Player extends Entity implements OnWallCollision, OnEntityCollision
         yPos = 50;
         width = 70;
         height = 70;
+        this.skin=idle;
     }
 
     @Override
     public void onEntityCollision(Entity entity) {
         if (entity.getClass() == Collectible.class) {
             switch (((Collectible) entity).getType()) {
-                case YELLOW:
-                    yellowStack++;
-                    break;
-                case GREEN:
-                    greenStack++;
-                    break;
-                case BLACK:
-                    blackStack++;
-                    break;
-                case RED:
-                    PV++;
-                    break;
+                case YELLOW -> yellowStack++;
+                case GREEN -> greenStack++;
+                case BLACK -> blackStack++;
+                case RED -> PV++;
             }
         }
         if (entity.getClass() == WorkBench.class) {
@@ -69,22 +72,26 @@ public class Player extends Entity implements OnWallCollision, OnEntityCollision
     }
 
     public void move(String direction) {
-
+        int speedFactor=50;
+        //todo : make a smooth acceleration
         switch (direction) {
-            case "up" :
-                yPos -= speed;
-                break;
-            case "right" :
-                xPos += speed;
-                break;
-            case "down" :
-                yPos += speed;
-                break;
-            case "left" :
-                xPos -= speed;
-                break;
-            default :
-                break;
+            case "up" -> {
+                yPos -= speed * speedFactor;
+                skin = up;
+            }
+            case "right" -> {
+                xPos += speed * speedFactor;
+                skin = right;
+            }
+            case "down" -> {
+                yPos += speed * speedFactor;
+                skin = down;
+            }
+            case "left" -> {
+                xPos -= speed * speedFactor;
+                skin = left;
+            }
+            default -> skin = idle;
         }
 
     }

@@ -1,5 +1,6 @@
 package GUI;
 
+import GameEngine.Level.Door;
 import GameEngine.Loader.ItemsLoader;
 import GameEngine.Player;
 import javafx.scene.Parent;
@@ -61,10 +62,12 @@ public class GameScene extends Scene {
 
     private void paint(double time){
         //all elements position and size must be linked to the height and the width
-        AnimatedImage skin = new AnimatedImage("Resources/Sprites/shark.jpg");
         Image room = new Image("Resources/Sprites/Room.png");
         gc.drawImage(room,0,0,width,height);
-        gc.drawImage(skin.getFrame(time),width/2,height/2,width/10,height/10);
+        for(Door d : player.room.getExit()) {
+            gc.drawImage(d.getSkin().getFrame(time),0,0);
+        }
+        gc.drawImage(player.getSkin().getFrame(time),player.getxPos(),player.getyPos(), player.getWidth(), player.getHeight());
 
 
     }

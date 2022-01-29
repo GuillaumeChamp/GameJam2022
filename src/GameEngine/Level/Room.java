@@ -21,4 +21,8 @@ public class Room {
         Door door = new Door(position,nextRoom);
         this.exit.add(door);
     }
+
+    public ArrayList<Door> getExit() {
+        return exit;
+    }
 }
