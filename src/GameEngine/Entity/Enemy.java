@@ -8,6 +8,7 @@ public class Enemy extends Entity implements Chase {
 
     private static int wound = 3;
 
+    Image[] boss_frames = {new Image("Resources/Sprites/boss1.png")};
     Image[] can_frames = {new Image("Resources/Sprites/canette.png")};
     Image[] bottle_frames = {new Image("Resources/Sprites/bouteille.png")};
     Image[] tire_frames = {new Image("Resources/Sprites/pneu.png")};
@@ -22,14 +23,15 @@ public class Enemy extends Entity implements Chase {
         this.typeNumber = tn;
         this.line = l;
         this.column = c;
-        xPos = l*1600/11;
-        yPos = c*900/7;
-        width = 70;
-        height = 70;
+        xPos = l*1600/13;
+        yPos = c*900/9;
+        width = 80;
+        height = 80;
         switch (tn) {
-            case 10 : {skin = new AnimatedImage(can_frames);break;}
-            case 11 : {skin = new AnimatedImage(bottle_frames);break;}
-            case 12 : {skin = new AnimatedImage(tire_frames);break;}
+            case 4 : {skin = new AnimatedImage(boss_frames);break;}
+            case 10 : {skin = new AnimatedImage(tire_frames);break;}
+            case 11 : {skin = new AnimatedImage(can_frames);break;}
+            case 12 : {skin = new AnimatedImage(bottle_frames);break;}
             default : {skin = new AnimatedImage(censured_frames);break;}
         }
     }

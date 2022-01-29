@@ -36,10 +36,10 @@ public class Player extends Entity implements OnWallCollision, OnEntityCollision
     private final ArrayList<Item> items = new ArrayList<>();
 
     public Player() {
-        xPos = 50;
-        yPos = 50;
-        width = 70;
-        height = 70;
+        xPos = Constant.ROOMSWITHD/2;
+        yPos = Constant.ROOMHEIGHT*3/4;
+        width = 80;
+        height = 80;
         this.skin=idle;
     }
 
