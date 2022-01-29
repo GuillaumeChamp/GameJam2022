@@ -23,21 +23,21 @@ public class Door extends Entity {
         int imageID=0;
         switch (pos){
             case Nord -> {
-                xPos = Constant.ROOMSWITHD/2;
-                yPos = 0;
                 this.height=20;
                 this.width=80;
+                xPos = Constant.ROOMSWITHD/2+this.height/2;
+                yPos = 0;
             }
             case Est -> {
                 imageID = 1;
                 xPos = Constant.ROOMSWITHD;
-                yPos = Constant.ROOMHEIGHT/2;
+                yPos = Constant.ROOMHEIGHT/2-this.height/2;
                 this.height=80;
                 this.width=20;
             }
             case Sud -> {
                 imageID = 2;
-                xPos = Constant.ROOMSWITHD/2;
+                xPos = Constant.ROOMSWITHD/2 - this.width/2;
                 yPos = Constant.ROOMHEIGHT;
                 this.height=20;
                 this.width=80;
@@ -45,7 +45,7 @@ public class Door extends Entity {
             case Ouest -> {
                 imageID = 3;
                 xPos = 0;
-                yPos = Constant.ROOMHEIGHT/2;
+                yPos = Constant.ROOMHEIGHT/2 - this.width/2;
                 this.height=80;
                 this.width=20;
             }
