@@ -2,7 +2,7 @@ package GameEngine;
 
 import GUI.AnimatedImage;
 import GameEngine.Entity.*;
-import GameEngine.Level.Block;
+import GameEngine.Level.*;
 import GameEngine.Level.Door;
 import GameEngine.Level.Floor;
 import GameEngine.Level.Room;
