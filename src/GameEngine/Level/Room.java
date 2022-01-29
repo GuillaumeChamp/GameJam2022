@@ -1,7 +1,6 @@
 package GameEngine.Level;
 
-import GameEngine.Entity.Enemy;
-import GameEngine.Entity.Entity;
+import GameEngine.Entity.*;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -10,6 +9,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Room {
+
+    private ArrayList<Rock> rocks = new ArrayList<>();
     private ArrayList<Entity> entities = new ArrayList<>();
     private ArrayList<Enemy> enemies = new ArrayList<>();
     private ArrayList<Door> exits;
@@ -17,7 +18,9 @@ public class Room {
 
     public Room(int RoomId){
         exits = new ArrayList<>(4);
+        this.load(RoomId);
     }
+
     public void load(int RoomId){
         try {
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
@@ -27,10 +30,16 @@ public class Room {
             }
             String[] roomData = line.split(",");
             for (String s : roomData) {
-                String[] things = s.split(" ");
-                if (things.length!=1) {
-                    enemies.add(new Enemy(Integer.parseInt(things[0]),Integer.parseInt(things[1]),Integer.parseInt(things[2])));
-                    System.out.println(things[0]+" "+things[1]+" "+things[2]);
+                String[] elements = s.split(" ");
+                if (elements.length>1) {
+                    switch (Integer.parseInt(elements[0])) {
+                        case 1 : {rocks.add(new Rock(Integer.parseInt(elements[1])*1600/11, Integer.parseInt(elements[2])*900/7)); break;}
+                        case 2 : {entities.add(new WorkBench(new Item[3])); break;}
+                        case 3 : {entities.add(new Recycling(Integer.parseInt(elements[1]), Integer.parseInt(elements[2]))); break;}
+                        case 10 :
+                        case 11 :
+                        case 12 : {enemies.add(new Enemy(Integer.parseInt(elements[0]), Integer.parseInt(elements[1]), Integer.parseInt(elements[2]))); break;}
+                    }
                 }
             }
         } catch (FileNotFoundException e1) {
@@ -54,4 +63,8 @@ public class Room {
     }
 
     public ArrayList<Enemy> getEnemies() {return enemies;}
+
+    public ArrayList<Rock> getRocks() {
+        return rocks;
+    }
 }

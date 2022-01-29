@@ -1,6 +1,7 @@
 package GUI;
 
 import GameEngine.Entity.Entity;
+import GameEngine.Entity.Rock;
 import GameEngine.Level.Door;
 import GameEngine.Loader.ItemsLoader;
 import GameEngine.Player;
@@ -70,15 +71,22 @@ public class GameScene extends Scene {
         gc.drawImage(room,0,0,width,height);
         gc.setStroke(Color.RED);
         for(Door d : player.currentRoom.getExits()) {
-            gc.drawImage(d.getSkin().getFrame(time),0,0);
+            gc.drawImage(d.getSkin().getFrame(time),0,0,width,height);
             gc.strokeRect(d.getxPos(),d.getyPos(),d.getWidth(),d.getHeight());
         }
         for(Entity e: player.currentRoom.getEntities()){
             gc.drawImage(e.getSkin().getFrame(time),e.getxPos(),e.getyPos(),e.getWidth(),e.getHeight());
             gc.strokeRect(e.getxPos(),e.getyPos(),e.getWidth(),e.getHeight());
         }
+
+        for(Rock r: player.currentRoom.getRocks()){
+            gc.drawImage(r.getSkin().getFrame(time),r.getxPos(),r.getyPos(),r.getWidth(),r.getHeight());
+            gc.strokeRect(r.getxPos(),r.getyPos(),r.getWidth(),r.getHeight());
+        }
+
         gc.drawImage(player.getSkin().getFrame(time),player.getxPos(),player.getyPos(), player.getWidth(), player.getHeight());
         gc.strokeRect(player.getxPos(),player.getyPos(),player.getWidth(),player.getHeight());
+
 
     }
 }
