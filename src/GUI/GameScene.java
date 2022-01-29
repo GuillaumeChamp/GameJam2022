@@ -19,7 +19,7 @@ public class GameScene extends Scene {
     public static double width;
     public static double height;
     private final Canvas canvas;
-    private Player player;
+    private final Player player;
 
     public GameScene(Parent parent, Canvas canvas,double width,double height) {
         super(parent, width, height);
@@ -76,25 +76,25 @@ public class GameScene extends Scene {
         double yRation =height/Constant.ROOMHEIGHT;
         for(Door d : player.currentRoom.getExits()) {
             gc.drawImage(d.getSkin().getFrame(time),0,0,width,height);
-            //gc.strokeRect(d.getxPos()*xRatio,d.getyPos()*yRation,d.getWidth(),d.getHeight());
+            gc.strokeRect(d.getxPos()*xRatio,d.getyPos()*yRation,d.getWidth(),d.getHeight());
         }
         for(Entity e: player.currentRoom.getEntities()){
             gc.drawImage(e.getSkin().getFrame(time),e.getxPos()*xRatio,e.getyPos()*yRation,e.getWidth()*xRatio,e.getHeight()*yRation);
-            //gc.strokeRect(e.getxPos()*xRatio,e.getyPos()*yRation,e.getWidth()*xRatio,e.getHeight()*yRation);
+            gc.strokeRect(e.getxPos()*xRatio,e.getyPos()*yRation,e.getWidth()*xRatio,e.getHeight()*yRation);
         }
 
         for(Rock r: player.currentRoom.getRocks()){
             gc.drawImage(r.getSkin().getFrame(time),r.getxPos()*xRatio,r.getyPos()*yRation,r.getWidth()*xRatio,r.getHeight()*yRation);
-            //gc.strokeRect(r.getxPos()*xRatio,r.getyPos()*yRation,r.getWidth()*xRatio,r.getHeight()*yRation);
+            gc.strokeRect(r.getxPos()*xRatio,r.getyPos()*yRation,r.getWidth()*xRatio,r.getHeight()*yRation);
         }
 
         for(Enemy e: player.currentRoom.getEnemies()){
             gc.drawImage(e.getSkin().getFrame(time),e.getxPos()*xRatio,e.getyPos()*yRation,e.getWidth()*xRatio,e.getHeight()*yRation);
-            //gc.strokeRect(e.getxPos()*xRatio,e.getyPos()*yRation,e.getWidth()*xRatio,e.getHeight()*yRation);
+            gc.strokeRect(e.getxPos()*xRatio,e.getyPos()*yRation,e.getWidth()*xRatio,e.getHeight()*yRation);
         }
 
         gc.drawImage(player.getSkin().getFrame(time),player.getxPos()*xRatio,player.getyPos()*yRation, player.getWidth()*xRatio, player.getHeight()*yRation);
-        //gc.strokeRect(player.getxPos()*xRatio,player.getyPos()*yRation,player.getWidth()*xRatio,player.getHeight()*yRation);
+        gc.strokeRect(player.getxPos()*xRatio,player.getyPos()*yRation,player.getWidth()*xRatio,player.getHeight()*yRation);
 
     }
 }

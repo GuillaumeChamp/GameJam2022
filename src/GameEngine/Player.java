@@ -45,10 +45,10 @@ public class Player extends Entity implements OnWallCollision, OnEntityCollision
 
     @Override
     public void detectCollision(ArrayList<Entity> entities) throws Exception {
-        Rectangle2D PlayerHitbox = new Rectangle2D(xPos,yPos,width,height);
+        Rectangle2D playerHitbox = new Rectangle2D(xPos,yPos,width,height);
         for (Entity e: entities) {
             Rectangle2D EntityHitbox = new Rectangle2D(e.getxPos(),e.getyPos(),e.getWidth(),e.getHeight());
-            if (EntityHitbox.intersects(PlayerHitbox)) onEntityCollision(e);
+            if (EntityHitbox.intersects(playerHitbox)) onEntityCollision(e);
         }
     }
 
@@ -92,8 +92,10 @@ public class Player extends Entity implements OnWallCollision, OnEntityCollision
     }
 
     public void move(String direction) {
-        int speedFactor=30;
+        int speedFactor=20;
         //todo : make a smooth acceleration
+        double oldX = xPos;
+        double oldY = yPos;
         switch (direction) {
             case "up" -> {
                 yPos -= speed * speedFactor;
@@ -113,6 +115,16 @@ public class Player extends Entity implements OnWallCollision, OnEntityCollision
             }
             default -> skin = idle;
         }
+        for (Rock r: this.currentRoom.getRocks()) {
+            Rectangle2D playerHitbox = new Rectangle2D(xPos,yPos,width,height);
+            Rectangle2D rockArea = new Rectangle2D(r.getxPos(),r.getyPos(),r.getWidth(),r.getHeight());
+            if (playerHitbox.intersects(rockArea)){
+                this.yPos = oldY;
+                this.xPos = oldX;
+                break;
+            }
+        }
+
         if(yPos<=5) yPos=5;
         if(yPos>=Constant.ROOMHEIGHT) yPos=Constant.ROOMHEIGHT;
         if(xPos<=5) xPos=5;
