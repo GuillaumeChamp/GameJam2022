@@ -26,12 +26,4 @@ public class AnimatedImage
         int index = (int)((time % (frames.length * duration)) / duration);
         return frames[index];
     }
-
-    /**
-     * Useful to change the texture might be use on trigger or cinematic
-     * @param frames new texture of the character
-     */
-    public void setFrames(Image[] frames) {
-        this.frames = frames;
-    }
 }

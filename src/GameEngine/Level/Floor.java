@@ -10,14 +10,14 @@ public class Floor {
                 {0,0,0,0,0,0,0,0,0},
                 {0,0,4,0,0,0,0,0,0},
                 {0,0,10,0,0,0,0,0,0},
-                {0,0,11,12,9 ,0 ,0,0,0},
-                {0,0,0 ,0 ,13,13,2,0,0},
-                {0,0,0,0,0,0,3,0,0},
+                {0,0,11,12,1 ,0 ,0,0,0},
+                {0,0,0 ,0 ,13,14,2,0,0},
+                {0,0,0,0,0,0 ,3,0,0},
                 {0,0,0,0,0,0,0,0,0},
                 {0,0,0,0,0,0,0,0,0}};
         //Todo : use seed
-        for (int i=1;i<9;i++){
-            for (int j=1;j<9;j++) {
+        for (int i=1;i<8;i++){
+            for (int j=1;j<8;j++) {
                 rooms[i][j] = new Room(floorSeed[i][j]);
             }
         }
@@ -27,7 +27,6 @@ public class Floor {
             }
         }
     }
-
     private void addExit(int[][] seed,Room[][] rooms,int i,int j){
         if (seed[i][j-1]!=0) rooms[i][j].addExit(Door.Position.Ouest,rooms[i][j-1]);
         if (seed[i][j+1]!=0) rooms[i][j].addExit(Door.Position.Est,rooms[i][j+1]);

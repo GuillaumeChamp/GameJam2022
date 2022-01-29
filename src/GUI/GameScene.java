@@ -1,5 +1,6 @@
 package GUI;
 
+import GameEngine.Constant;
 import GameEngine.Entity.Entity;
 import GameEngine.Entity.Rock;
 import GameEngine.Level.Door;
@@ -70,13 +71,15 @@ public class GameScene extends Scene {
         Image room = new Image("Resources/Sprites/Room.png");
         gc.drawImage(room,0,0,width,height);
         gc.setStroke(Color.RED);
+        double xRatio = width/Constant.ROOMSWITHD;
+        double yRation =height/Constant.ROOMHEIGHT;
         for(Door d : player.currentRoom.getExits()) {
-            gc.drawImage(d.getSkin().getFrame(time),0,0,width,height);
+            gc.drawImage(d.getSkin().getFrame(time),0,0);
             gc.strokeRect(d.getxPos(),d.getyPos(),d.getWidth(),d.getHeight());
         }
         for(Entity e: player.currentRoom.getEntities()){
-            gc.drawImage(e.getSkin().getFrame(time),e.getxPos(),e.getyPos(),e.getWidth(),e.getHeight());
-            gc.strokeRect(e.getxPos(),e.getyPos(),e.getWidth(),e.getHeight());
+            gc.drawImage(e.getSkin().getFrame(time),e.getxPos()*xRatio,e.getyPos()*yRation,e.getWidth()*xRatio,e.getHeight()*yRation);
+            gc.strokeRect(e.getxPos()*xRatio,e.getyPos()*yRation,e.getWidth()*xRatio,e.getHeight()*yRation);
         }
 
         for(Rock r: player.currentRoom.getRocks()){
@@ -86,7 +89,6 @@ public class GameScene extends Scene {
 
         gc.drawImage(player.getSkin().getFrame(time),player.getxPos(),player.getyPos(), player.getWidth(), player.getHeight());
         gc.strokeRect(player.getxPos(),player.getyPos(),player.getWidth(),player.getHeight());
-
 
     }
 }
