@@ -1,5 +1,6 @@
 package GUI;
 
+import GameEngine.Constant;
 import GameEngine.Player;
 import javafx.scene.input.KeyCode;
 
@@ -9,14 +10,12 @@ public class Controller {
 
     public static ArrayList<KeyCode> inputString=new ArrayList<>();
 
-    private static boolean hits = false;
 
     public static void input(KeyCode code){
         if (!inputString.contains(code)) inputString.add(code);
     }
     public static void output(KeyCode code){
         inputString.remove(code);
-        hits = false;
     }
 
     /**
@@ -37,7 +36,10 @@ public class Controller {
             player.move("left");
         }
         if (inputString.contains(KeyCode.K))
-            player.attack();
+            if (!Constant.autoSound.isPlaying()) {
+                player.attack();
+                Constant.autoSound.play();
+            }
 
         player.detectCollision(player.currentRoom.getEntities());
     }
