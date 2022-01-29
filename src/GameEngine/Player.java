@@ -64,6 +64,7 @@ public class Player extends Entity implements OnWallCollision, OnEntityCollision
                 case BLACK -> blackStack++;
                 case RED -> PV++;
             }
+            this.currentRoom.getEntities().remove(entity);
         }
         if (entity.getClass() == WorkBench.class) {
             System.out.println("Workbench found\n");
@@ -148,11 +149,13 @@ public class Player extends Entity implements OnWallCollision, OnEntityCollision
         for (Enemy e : currentRoom.getEnemies()) {
             try{
                 if (hitbox.intersects(e.getxPos(),e.getyPos(),e.getWidth(),e.getHeight())) {
-                    e.getsHurt();
+                    e.getsHurt(this.attack);
                 }
             } catch (Exception exc) {
-                System.out.println("Enemy dead");
                 currentRoom.getEnemies().remove(e);
+                Collectible.Type type = e.getType();
+                currentRoom.getEntities().add(new Collectible(type,e.getxPos(),e.getyPos(),e.getHeight(),e.getWidth()));
+                Constant.deathSound.play();
             }
         }
     }

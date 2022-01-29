@@ -6,21 +6,20 @@ import javafx.scene.image.Image;
 
 public class Enemy extends Entity implements Chase {
 
-    private static int wound = 3;
-
     Image[] boss_frames = {new Image("Resources/Sprites/boss1.png")};
     Image[] can_frames = {new Image("Resources/Sprites/canette.png")};
     Image[] bottle_frames = {new Image("Resources/Sprites/bouteille.png")};
     Image[] tire_frames = {new Image("Resources/Sprites/pneu.png")};
     Image[] censured_frames = {new Image("Resources/Sprites/censured.png")};
 
-    public int typeNumber;
+    public int mobId;
     public int line;
     public int column;
     private int life = 15;
+    private Collectible.Type type;
 
     public Enemy(int tn, int l, int c) {
-        this.typeNumber = tn;
+        this.mobId = tn;
         this.line = l;
         this.column = c;
         xPos = l*1600/13;
@@ -28,11 +27,20 @@ public class Enemy extends Entity implements Chase {
         width = 80;
         height = 80;
         switch (tn) {
-            case 4 : {skin = new AnimatedImage(boss_frames); width=400; height=400; break;}
-            case 10 : {skin = new AnimatedImage(tire_frames);break;}
-            case 11 : {skin = new AnimatedImage(can_frames);break;}
-            case 12 : {skin = new AnimatedImage(bottle_frames);break;}
-            default : {skin = new AnimatedImage(censured_frames);break;}
+            case 4 : {skin = new AnimatedImage(boss_frames);
+                type = Collectible.Type.RED;
+                break;}
+            case 10 : {skin = new AnimatedImage(tire_frames);
+                type = Collectible.Type.BLACK;;
+                break;}
+            case 11 : {skin = new AnimatedImage(can_frames);
+                type = Collectible.Type.YELLOW;
+                break;}
+            case 12 : {skin = new AnimatedImage(bottle_frames);
+                type = Collectible.Type.GREEN;
+                break;}
+            default : {skin = new AnimatedImage(censured_frames);
+                type = Collectible.Type.BLACK;break;}
         }
     }
 
@@ -41,9 +49,13 @@ public class Enemy extends Entity implements Chase {
 
     }
 
-    public void getsHurt() throws Exception {
-        life -= wound;
-        if (life<0) {throw new Exception("IsDead");}
+    public Collectible.Type getType() {
+        return type;
+    }
+
+    public void getsHurt(double damage) throws Exception {
+        life -= damage;
+        if (life<=0) {throw new Exception("IsDead");}
     }
 
 }
