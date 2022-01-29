@@ -17,6 +17,7 @@ public class GameScene extends Scene {
     private static double width;
     private static double height;
     private final Canvas canvas;
+    private Player player;
 
     public GameScene(Parent parent, Canvas canvas,double width,double height) {
         super(parent, width, height);
@@ -26,13 +27,9 @@ public class GameScene extends Scene {
         GameScene.height = height;
         this.addResizeable();
         this.addController();
-
         ItemsLoader il = new ItemsLoader();
         il.fillItems(".//src/Resources/Data/Items.csv");
-        Item[] itemsTest = {il.getAllItems().get(6),il.getAllItems().get(16),il.getAllItems().get(18)};
-        WorkBench wb = new WorkBench(itemsTest);
-        Player playerTest = new Player();
-        wb.craft(playerTest,il.getAllItems().get(18));
+
     }
 
     /**
@@ -61,7 +58,7 @@ public class GameScene extends Scene {
      */
     public void tick(double time){
         paint(time);
-        //Controller.action(player);
+        Controller.action(player);
 
     }
 
@@ -71,5 +68,8 @@ public class GameScene extends Scene {
         Image room = new Image("Resources/Sprites/Room.png");
         gc.drawImage(room,0,0,width,height);
         gc.drawImage(skin.getFrame(time),width/2,height/2,width/10,height/10);
+
+
+
     }
 }

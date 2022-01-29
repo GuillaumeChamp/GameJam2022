@@ -1,5 +1,6 @@
 package GameEngine.Entity;
 
+import GUI.AnimatedImage;
 import GameEngine.Player;
 import javafx.scene.image.Image;
 
@@ -8,7 +9,7 @@ public class Collectible extends Entity {
 
     private Type type;
 
-    public Collectible(Type type, double x, double y, double h, double w, Image skin) {
+    public Collectible(Type type, double x, double y, double h, double w, AnimatedImage skin) {
         this.type = type;
         this.xPos = x;
         this.yPos = y;

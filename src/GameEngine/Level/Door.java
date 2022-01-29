@@ -2,6 +2,7 @@ package GameEngine.Level;
 
 import GameEngine.Entity.Entity;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
 
@@ -37,7 +38,9 @@ public class Door extends Entity {
         }
         Image source = new Image("Resources/Sprites/door.png");
         PixelReader reader = source.getPixelReader();
-        skin = new WritableImage(reader, 40*imageID, 0, 40, 40);
+        Image[] temp = new Image[1];
+        temp[0] = new WritableImage(reader, 40*imageID, 0, 40, 40);
+        skin.setFrames(temp);
     }
 
     public void nextRoom(){

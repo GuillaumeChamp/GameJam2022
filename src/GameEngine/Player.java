@@ -6,6 +6,7 @@ import GameEngine.Entity.Item;
 import GameEngine.Entity.WorkBench;
 import GameEngine.Level.*;
 import GameEngine.Physic.*;
+import javafx.scene.image.Image;
 
 import java.util.ArrayList;
 
@@ -24,7 +25,10 @@ public class Player extends Entity implements OnWallCollision, OnEntityCollision
     private ArrayList<Item> items = new ArrayList<>();
 
     public Player() {
-
+        xPos = 50;
+        yPos = 50;
+        width = 70;
+        height = 70;
     }
 
     @Override

@@ -5,18 +5,19 @@ import javafx.scene.image.ImageView;
 
 public class AnimatedImage
 {
-    protected ImageView[] frames;
+    protected Image[] frames;
     protected double duration;
+
+    public AnimatedImage() {}
 
     public AnimatedImage(String path){
         //frames = ImageBuilder.build(path);
-        frames = new ImageView[1];
+        frames = new Image[1];
         try {
-            frames[0] = new ImageView(path);
-            frames[0].setPreserveRatio(true);
+            frames[0] = new Image(path);
         }catch (Exception e){
             e.printStackTrace();
-            frames[0]= new ImageView("Resources/Sprites/shark.jpg");
+            frames[0]= new Image("Resources/Sprites/shark.jpg");
         }
         duration = 1;
     }
@@ -24,7 +25,7 @@ public class AnimatedImage
     public Image getFrame(double time)
     {
         int index = (int)((time % (frames.length * duration)) / duration);
-        return frames[index].getImage();
+        return frames[index];
     }
 
 
@@ -40,7 +41,7 @@ public class AnimatedImage
      * Useful to change the texture might be use on trigger or cinematic
      * @param frames new texture of the character
      */
-    public void setFrames(ImageView[] frames) {
+    public void setFrames(Image[] frames) {
         this.frames = frames;
     }
 }

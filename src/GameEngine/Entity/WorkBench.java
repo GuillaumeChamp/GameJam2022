@@ -8,6 +8,10 @@ public class WorkBench extends Entity {
 
     public WorkBench(Item[] items) {
         this.itemsHold = items;
+        xPos = 100;
+        yPos = 100;
+        width = 50;
+        height = 50;
     }
 
     public void craft(Player player, Item item) {
