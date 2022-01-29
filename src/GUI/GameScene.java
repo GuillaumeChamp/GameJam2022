@@ -32,6 +32,8 @@ public class GameScene extends Scene {
         ItemsLoader il = new ItemsLoader();
         il.fillItems(".//src/Resources/Data/Items.csv");
         player = new Player();
+        Constant.deathSound.setBalance(10);
+        Constant.deathSound.setVolume(10);
     }
 
     /**

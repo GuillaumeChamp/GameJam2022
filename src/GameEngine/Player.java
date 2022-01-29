@@ -150,6 +150,7 @@ public class Player extends Entity implements OnWallCollision, OnEntityCollision
             } catch (Exception exc) {
                 System.out.println("Enemy dead");
                 currentRoom.getEnemies().remove(e);
+                Constant.deathSound.play();
             }
         }
     }
