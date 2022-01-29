@@ -4,7 +4,10 @@ import GameEngine.Player;
 
 public class Recycling extends Entity {
 
-    public Recycling() {}
+    public Recycling(int x,int y) {
+        xPos=x;
+        yPos=y;
+    }
 
     public void exchange(Player player, Collectible give1, Collectible give2, Collectible take) {
         if (canExchange(player,give1,give2,take)) {
